@@ -1,27 +1,51 @@
-import React, { useState } from 'react'
-import {
-  Eye,
-  EyeOff,
-  Mail,
-  Lock,
-  ArrowRight,
-} from 'lucide-react'
+import React, { useState } from "react";
+import { Eye, EyeOff, Mail, Lock, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useHttp } from "../../../hooks/usehttp";
+import {decodeTokenAndGetRole} from "../../../utils/auth"
 
 const LoginPage = () => {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [showPassword, setShowPassword] = useState(false)
-  const [rememberSession, setRememberSession] = useState(false)
+  const navigate = useNavigate();
+  const { post } = useHttp();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  // const [rememberSession, setRememberSession] = useState(false)
 
-  const handleLogin = (e) => {
-    e.preventDefault()
-
-    console.log('Login attempt:', {
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    const requestBody = {
       email,
       password,
-      rememberSession,
-    })
-  }
+    };
+    try {
+      const response =await post("/clients/signin", requestBody);
+      console.log("Login response:", response);
+      if(response?.success){
+        const token = response.data.token;
+        localStorage.setItem("token", token);
+        const role = decodeTokenAndGetRole(token);
+        localStorage.setItem("role", role);
+
+        if(role === "client"){
+          navigate("/client/scene");
+        }else {
+          navigate("/");
+        }
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+    } finally {
+      setIsLoading(false);
+    }
+    console.log("Login attempt:", {
+      email,
+      password,
+      // rememberSession,
+    });
+  };
 
   return (
     <main className="min-h-screen bg-white lg:flex">
@@ -52,7 +76,8 @@ const LoginPage = () => {
           </h1>
 
           <p className="font-inter max-w-md text-[14px] leading-6 text-blue-100/85 lg:max-w-124 lg:text-[16px]">
-            Secure access for live asset visibility, operations teams, and industrial monitoring workflows.
+            Secure access for live asset visibility, operations teams, and
+            industrial monitoring workflows.
           </p>
         </div>
 
@@ -60,10 +85,7 @@ const LoginPage = () => {
           <p className="font-inter text-[20px] font-bold leading-tight text-white md:text-[22px] lg:text-[26px] xl:text-[28px]">
             Create your account and start
             <br />
-            monitoring{' '}
-            <span className="font-bold text-[#0098ff]">
-              smarter
-            </span>
+            monitoring <span className="font-bold text-[#0098ff]">smarter</span>
           </p>
         </div>
 
@@ -135,7 +157,7 @@ const LoginPage = () => {
                 <Lock className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
 
                 <input
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -146,7 +168,7 @@ const LoginPage = () => {
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 transition hover:text-gray-700"
-                  aria-label={showPassword ? 'Hide password' : 'Show password'}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? (
                     <EyeOff className="h-5 w-5" />
@@ -157,12 +179,12 @@ const LoginPage = () => {
               </div>
             </div>
 
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            {/* <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
               <label className="font-inter flex cursor-pointer items-center gap-2 text-[15px] font-normal text-gray-700 sm:text-[16px]">
                 <input
                   type="checkbox"
-                  checked={rememberSession}
-                  onChange={(e) => setRememberSession(e.target.checked)}
+                  // checked={rememberSession}
+                  // onChange={(e) => setRememberSession(e.target.checked)}
                   className="h-4 w-4 accent-[#003D9B]"
                 />
 
@@ -175,7 +197,7 @@ const LoginPage = () => {
               >
                 Forgot password?
               </a>
-            </div>
+            </div> */}
 
             <button
               type="submit"
@@ -187,18 +209,18 @@ const LoginPage = () => {
           </form>
 
           <p className="font-inter mt-7 text-center text-[15px] text-gray-600 sm:text-[16px] lg:mt-8">
-            New to the unit?{' '}
-            <a
-              href="#"
-              className="font-inter text-[15px] font-semibold text-blue-600 hover:text-blue-700 sm:text-[16px]"
-            >
-              Provision access
-            </a>
+            New to the unit?{" "}
+           <button
+  type="button"
+  className="font-inter text-[15px] font-semibold text-blue-600 hover:text-blue-700 sm:text-[16px]"
+>
+  Provision access
+</button>
           </p>
         </div>
       </section>
     </main>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;
