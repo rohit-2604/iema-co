@@ -1,7 +1,7 @@
 // src/hooks/useHttp.jsx
 import { useState, useCallback } from "react";
 
-const API_BASE_URL = import.meta.env.VITE_BACKEND_URL || "http://1.1.1.1:8080/";
+const API_BASE_URL = import.meta.env.VITE_BACKEND_URL || "https://iema-co-dev.vercel.app";
 // Example .env value:
 // VITE_BACKEND_URL="https://your-backend-url.com/api"
 
