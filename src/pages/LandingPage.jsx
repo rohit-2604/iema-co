@@ -78,7 +78,7 @@ const LandingPage = () => {
           <div className="absolute inset-y-0 left-0 w-full bg-[#01154a] md:w-[54%] lg:w-[50%]" />
           <div className="absolute inset-y-0 right-0 w-full md:w-[58%] lg:w-[56%]">
             <img
-              src="/login-img.png"
+              src="/LandingBackground.png"
               alt="Industrial monitoring facility"
               className="h-full w-full object-contain object-right-bottom"
             />
@@ -176,7 +176,7 @@ const LandingPage = () => {
           </div>
         </div>
 
-        <div className="relative z-10 w-full px-4 pb-6 md:px-7 md:pb-8 lg:px-10 lg:pb-10">
+        <div className="relative z-10 mt-4 w-full px-4 pb-4 md:mt-6 md:px-7 md:pb-6 lg:mt-8 lg:px-10 lg:pb-8">
           <div className="font-inter grid w-full gap-0 overflow-hidden rounded-xl border border-white/20 bg-gradient-to-r from-white/8 to-white/5 shadow-[0_32px_64px_rgba(0,119,255,0.1)] backdrop-blur-md grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
             {heroStats.map(({ icon: Icon, title, detail }) => (
               <div
@@ -200,7 +200,7 @@ const LandingPage = () => {
 
       <section
         id="features"
-        className="mx-auto w-full max-w-full px-4 py-8 md:px-8 md:py-12 lg:max-w-[1320px] lg:px-10 lg:py-16"
+        className="mx-auto w-full max-w-full px-4 py-6 md:px-8 md:py-8 lg:max-w-[1320px] lg:px-10 lg:py-10"
       >
         <div className="mb-6 md:mb-8">
           <p className="font-jetbrains text-center text-[9px] font-bold uppercase tracking-[0.32em] text-[#0077ff] md:text-[10px]">
