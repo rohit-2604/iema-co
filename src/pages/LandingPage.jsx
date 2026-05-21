@@ -73,16 +73,14 @@ const featureCards = [
 const LandingPage = () => {
   return (
     <main className="min-h-screen bg-[#f6f8fc] text-slate-950">
-      <section className="relative min-h-screen overflow-hidden bg-[#01154A] text-white md:min-h-[700px] lg:min-h-[740px]">
+      <section className="relative min-h-screen overflow-hidden text-white md:min-h-[700px] lg:min-h-[740px]">
         <div className="absolute inset-0">
-          <div className="absolute inset-y-0 left-0 w-full bg-[#01154a] md:w-[54%] lg:w-[50%]" />
-          <div className="absolute inset-y-0 right-0 w-full md:w-[58%] lg:w-[56%]">
-            <img
-              src="/LandingBackground.png"
-              alt="Industrial monitoring facility"
-              className="h-full w-full object-contain object-right-bottom"
-            />
-          </div>
+          <img
+            src="/LandingBackground.png"
+            alt="Industrial monitoring facility"
+            className="absolute  h-full w-full object-fit"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent" />
         </div>
 
         <header className="relative z-10 flex w-full items-center justify-between px-4 py-4 md:px-7 lg:px-10">
@@ -103,7 +101,7 @@ const LandingPage = () => {
             </div>
           </a>
 
-          <nav className="font-inter hidden items-center gap-4 text-[11px] font-medium text-blue-50/90 md:flex lg:gap-7 lg:text-[12px]">
+          {/* <nav className="font-inter hidden items-center gap-4 text-[11px] font-medium text-blue-50/90 md:flex lg:gap-7 lg:text-[12px]">
             {navItems.map((item) => (
               <a
                 key={item}
@@ -120,7 +118,7 @@ const LandingPage = () => {
             <a href="#about" className="transition hover:text-white">
               About Us
             </a>
-          </nav>
+          </nav> */}
 
           <div className="font-inter flex items-center gap-2 md:gap-3">
             <a
@@ -138,7 +136,7 @@ const LandingPage = () => {
           </div>
         </header>
 
-        <div className="relative z-10 w-full px-4 pb-6 pt-4 md:w-[58%] md:px-7 md:pb-8 md:pt-10 lg:w-[50%] lg:px-10 lg:pt-12">
+        <div className="relative z-10 w-full px-4 pb-6 pt-20 md:w-[58%] md:px-7 md:pb-8 md:pt-28 lg:w-[50%] lg:px-10 lg:pt-32">
           <div className="max-w-full md:max-w-[540px] lg:max-w-[520px]">
             <div className="font-jetbrains mb-4 inline-flex items-center gap-2 rounded-full border border-[#0077ff]/40 bg-[#0077ff]/20 px-3 py-2 text-[8px] font-bold uppercase tracking-[0.24em] text-[#5cc3ff] md:mb-5 md:px-4 md:py-2.5 md:text-[9px]">
               <Zap className="h-3 w-3" />
