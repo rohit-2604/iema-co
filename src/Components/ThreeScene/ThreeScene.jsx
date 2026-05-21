@@ -8,11 +8,13 @@ import blastFurnaceImg from "../../assets/process/blast-furnace.jpg";
 import bofImg from "../../assets/process/bof.jpg";
 import billetImg from "../../assets/process/billet.jpg";
 import merchantMillImg from "../../assets/process/merchant-mill.jpg";
+import { useNavigate } from "react-router-dom";
 
 import "./ThreeScene.css";
 import { MoveRight } from "lucide-react";
 
 function ThreeScene() {
+  const navigate = useNavigate();
   const processData = [
     {
       id: 1,
@@ -162,11 +164,11 @@ function ThreeScene() {
               <h3>{selectedProcess.status}</h3>
             </div>
           </div>
-          <div className="mt-2 flex dashboard-btn gap-4 items-center justify-center font-inter tracking-widest">
-
-          
-
-          Check in Dashboard <MoveRight />
+          <div
+            onClick={() => navigate("/client/dashboard")}
+            className="mt-2 flex dashboard-btn gap-4 items-center justify-center font-inter tracking-widest"
+          >
+            Check in Dashboard <MoveRight />
           </div>
         </div>
 
