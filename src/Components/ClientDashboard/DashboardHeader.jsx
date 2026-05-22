@@ -3,7 +3,7 @@ import React from 'react';
 
 export default function Header() {
   return (
-    <div className="bg-[#f5f8fc]  px-6 py-4">
+    <div className="bg-[#f5f8fc] p-2">
       <div className="flex items-center justify-between">
         {/* Title and Breadcrumb */}
         <div className="flex-1">
