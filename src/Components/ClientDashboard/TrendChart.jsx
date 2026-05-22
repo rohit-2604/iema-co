@@ -296,7 +296,6 @@ export default function TrendChart({ timeRange = '24H', setTimeRange = () => {} 
             }}
           >
             <option>ppm</option>
-            <option>db</option>
           </select>
 
           {/* Time range buttons */}
