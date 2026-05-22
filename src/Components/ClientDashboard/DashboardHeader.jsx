@@ -35,7 +35,7 @@ export default function Header() {
         </div>
 
         <div className="text-xs text-gray-500 ml-5 flex items-center gap-1">
-          Bhilai_mdkwrft
+          Bhilai_main_entrance
           <Copy className="w-3 h-3" />
         </div>
 
